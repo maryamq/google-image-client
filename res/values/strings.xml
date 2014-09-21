@@ -3,5 +3,6 @@
 
     <string name="app_name">ImageClient</string>
     <string name="hello_world">Hello world!</string>
+    <string name="image_client">Image Client</string>
 
 </resources>
