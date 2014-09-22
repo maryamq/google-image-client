@@ -7,8 +7,10 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.maryamq.imageclient.R;
+import com.maryamq.imageclient.Utils;
 import com.maryamq.imageclient.model.ImageResult;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 public class ImageDisplayActivity extends Activity {
 
@@ -43,4 +45,6 @@ public class ImageDisplayActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
 }

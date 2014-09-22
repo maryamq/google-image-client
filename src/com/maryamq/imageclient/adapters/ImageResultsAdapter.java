@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maryamq.imageclient.R;
+import com.maryamq.imageclient.Utils;
 import com.maryamq.imageclient.model.ImageResult;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +36,7 @@ public class ImageResultsAdapter extends ArrayAdapter<ImageResult> {
 		TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
 		ivImage.setImageResource(0);
 		tvTitle.setText(Html.fromHtml(result.title));
+		//Utils.loadPhotoForWidth(ivImage, getContext(), result.thumbUrl);
 		Picasso.with(getContext()).load(result.thumbUrl).into(ivImage);
 		return convertView;
 	}

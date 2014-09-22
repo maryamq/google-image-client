@@ -19,11 +19,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.maryamq.imageclient.R;
 import com.maryamq.imageclient.adapters.ImageResultsAdapter;
+import com.maryamq.imageclient.handlers.EndlessScrollListener;
 import com.maryamq.imageclient.model.ImageResult;
 
 public class SearchActivity extends Activity {
@@ -33,23 +35,41 @@ public class SearchActivity extends Activity {
 	private ArrayList<ImageResult> imageResults;
 	private ImageResultsAdapter aImageResults;
 	private GridView gvResults;
+	private int lastCusorPosition;
+	private String currentQuery;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
-		this.setupViews();
 
 		client = new AsyncHttpClient();
 		// Setup adapter
 		imageResults = new ArrayList<ImageResult>();
 		aImageResults = new ImageResultsAdapter(this, imageResults);
-		gvResults.setAdapter(aImageResults);
+		this.setupViews();
 
 	}
 
 	private void setupViews() {
 		gvResults = (GridView) this.findViewById(R.id.gdResults);
+		gvResults.setAdapter(aImageResults);
+		gvResults.setOnScrollListener(new EndlessScrollListener() {
+
+			@Override
+			public void onLoadMore(int page, int totalItemsCount) {
+				String pageParam = String.format("&start=%d", totalItemsCount);
+				if (lastCusorPosition == 0) {
+					aImageResults.clear();
+				}
+				if (lastCusorPosition != totalItemsCount) {
+					triggerSearch(currentQuery, pageParam);
+
+				}
+				lastCusorPosition = totalItemsCount;
+			}
+
+		});
 		gvResults.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -65,38 +85,45 @@ public class SearchActivity extends Activity {
 
 	}
 
-	private boolean triggerSearch(String input) {
+	private boolean triggerSearch(String input, String params) {
 		if (input == null || input.isEmpty()) {
 			return false;
 		}
-		client.get(String.format(SEARCH_URL, input, 8),
-				new JsonHttpResponseHandler() {
 
-					@Override
-					public void onFailure(int statusCode, Header[] headers,
-							Throwable throwable, JSONObject errorResponse) {
-						// TODO Auto-generated method stub
-						super.onFailure(statusCode, headers, throwable,
-								errorResponse);
+		this.currentQuery = input;
+		String url = String.format(SEARCH_URL, input, 6);
+		url = params != null || !params.isEmpty() ? url + params : url;
+		Log.d("debug", "URL for load more " + url);
+		client.get(url, new JsonHttpResponseHandler() {
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				// TODO Auto-generated method stub
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					JSONObject response) {
+				JSONArray imageResultsJson = null;
+				try {
+					if (response.isNull("responseData")) {
+						Toast.makeText(SearchActivity.this, "No More Images!",
+								Toast.LENGTH_SHORT).show();
+						return;
 					}
+					imageResultsJson = response.getJSONObject("responseData")
+							.getJSONArray("results");
+					aImageResults.addAll(ImageResult
+							.fromJSONArray(imageResultsJson));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
-					@Override
-					public void onSuccess(int statusCode, Header[] headers,
-							JSONObject response) {
-						Log.d("DEBUG", response.toString());
-						JSONArray imageResultsJson = null;
-						try {
-							imageResultsJson = response.getJSONObject(
-									"responseData").getJSONArray("results");
-							aImageResults.addAll(ImageResult
-									.fromJSONArray(imageResultsJson));
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-
-				});
+		});
 
 		return true;
 	}
@@ -112,7 +139,8 @@ public class SearchActivity extends Activity {
 			public boolean onQueryTextSubmit(String query) {
 				// TODO Auto-generated method stub
 				aImageResults.clear();
-				return triggerSearch(query);
+				Log.i("Debug", "List cleared");
+				return triggerSearch(query, "");
 			}
 
 			@Override
@@ -123,4 +151,5 @@ public class SearchActivity extends Activity {
 		});
 		return super.onCreateOptionsMenu(menu);
 	}
+
 }
