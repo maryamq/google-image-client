@@ -2,15 +2,15 @@ package com.maryamq.imageclient.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.maryamq.imageclient.R;
-import com.maryamq.imageclient.Utils;
 import com.maryamq.imageclient.model.ImageResult;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 
 public class ImageDisplayActivity extends Activity {
 
@@ -22,9 +22,11 @@ public class ImageDisplayActivity extends Activity {
 
 		ImageView ivImage = (ImageView) this
 				.findViewById(R.id.ivFullScreenImage);
+		TextView tvTitle = (TextView)this.findViewById(R.id.tvTitle);
 		ImageResult result = (ImageResult) this.getIntent()
 				.getSerializableExtra(SearchActivity.IMAGE_RESULT);
 		Picasso.with(this).load(result.fullUrl).into(ivImage);
+		tvTitle.setText(Html.fromHtml(result.title));
 	}
 
 	@Override

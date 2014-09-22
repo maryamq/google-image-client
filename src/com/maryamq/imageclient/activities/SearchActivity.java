@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.maryamq.imageclient.R;
+import com.maryamq.imageclient.Utils;
 import com.maryamq.imageclient.adapters.ImageResultsAdapter;
 import com.maryamq.imageclient.handlers.EndlessScrollListener;
 import com.maryamq.imageclient.model.ImageResult;
@@ -87,6 +88,12 @@ public class SearchActivity extends Activity {
 
 	private boolean triggerSearch(String input, String params) {
 		if (input == null || input.isEmpty()) {
+			return false;
+		}
+		
+		// check the internet.
+		if (!Utils.isNetworkAvailable(this)) {
+			Toast.makeText(SearchActivity.this, "No Internet connection", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 

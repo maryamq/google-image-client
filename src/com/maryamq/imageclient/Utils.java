@@ -1,9 +1,9 @@
 package com.maryamq.imageclient;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -11,6 +11,13 @@ import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Transformation;
 
 public class Utils {
+	
+	public static boolean isNetworkAvailable(Context context) {
+	    ConnectivityManager connectivityManager 
+	          = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+	}
 	
 	public static void loadPhoto(ImageView ivImage, Context context, String url){
 		RequestCreator picassoRequest = Picasso.with(context).load(url);
