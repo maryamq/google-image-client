@@ -17,16 +17,17 @@ public class ImageDisplayActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_image_display);
+		setContentView(R.layout.item_image_result);
 		getActionBar().hide();
 
 		ImageView ivImage = (ImageView) this
-				.findViewById(R.id.ivFullScreenImage);
+				.findViewById(R.id.ivImage);
+	
 		TextView tvTitle = (TextView)this.findViewById(R.id.tvTitle);
 		ImageResult result = (ImageResult) this.getIntent()
 				.getSerializableExtra(SearchActivity.IMAGE_RESULT);
 		Picasso.with(this).load(result.fullUrl).into(ivImage);
-		tvTitle.setText(Html.fromHtml(result.title));
+		tvTitle.setText(Html.fromHtml(result.title)); 
 	}
 
 	@Override
