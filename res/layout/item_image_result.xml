@@ -17,7 +17,8 @@
         android:layout_gravity="bottom"
         android:background="#55000000"
         android:ellipsize="end"
-        android:maxLines="2"
+        android:maxLines="1"
         android:padding="5dp"
-        android:textColor="@android:color/white" />ß
+        android:textColor="@android:color/white" />
+
 </FrameLayout>

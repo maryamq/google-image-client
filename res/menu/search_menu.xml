@@ -7,6 +7,6 @@
         android:orderInCategory="5"
         android:showAsAction="ifRoom|collapseActionView"
         android:title="Search"/>
-    <item android:id="@+id/itSettings" android:title="Settings" android:icon="@drawable/ic_action_settings" android:showAsAction="ifRoom" android:visible="true" android:menuCategory="secondary" android:orderInCategory="2"></item>
+    <item android:id="@+id/itSettings" android:title="Settings" android:icon="@drawable/ic_action_settings" android:showAsAction="always" android:visible="true" android:menuCategory="secondary" android:orderInCategory="2"></item>
 
 </menu>

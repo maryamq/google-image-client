@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCFCFCFC"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/tvLabelSearchOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="3dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/default_string_customize_settings"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/tvImageSizeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLabelSearchOptions"
+        android:layout_below="@+id/tvLabelSearchOptions"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/default_image_size" />
+
+    <Spinner
+        android:id="@+id/spImageSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvImageSizeLabel"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tvImageSizeLabel" />
+
+    <TextView
+        android:id="@+id/tvImageSizeType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLabelSearchOptions"
+        android:layout_below="@+id/tvImageSizeLabel"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/default_image_type" />
+
+    <Spinner
+        android:id="@+id/spImageType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvImageSizeType"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tvImageSizeType" />
+
+    <TextView
+        android:id="@+id/tvImageColorsLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLabelSearchOptions"
+        android:layout_below="@+id/tvImageSizeType"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/default_color_filter" />
+
+    <Spinner
+        android:id="@+id/spImageColors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvImageColorsLbl"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tvImageColorsLbl" />
+
+    <EditText
+        android:id="@+id/etSite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvImageColorsLbl"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/default_site_filter" >
+
+        <requestFocus />
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toStartOf="@+id/btnSave"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/tvLabelSearchOptions"
+        android:background="@android:color/holo_blue_light"
+        android:src="@drawable/ic_cancel" />
+
+    <ImageButton
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvImageColorsLbl"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/tvLabelSearchOptions"
+        android:layout_alignTop="@+id/btnCancel"
+        android:background="@android:color/holo_blue_light"
+        android:src="@drawable/ic_save" />
+
+</RelativeLayout>
