@@ -74,41 +74,42 @@
         android:id="@+id/etSite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/tvImageColorsLbl"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
+        android:maxLines="1"
         android:ems="10"
         android:hint="@string/default_site_filter" >
 
         <requestFocus />
     </EditText>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+<LinearLayout
+    android:layout_width="match_parent" 
+    android:layout_below="@+id/etSite"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentLeft="true"
+    android:layout_marginTop="15dp"
+    android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/etSite"
-        android:layout_marginTop="15dp" >
+       android:layout_weight=".50"
+       android:layout_marginRight="5dp"
+  
+        android:background="@android:color/holo_blue_light"
+        android:src="@drawable/ic_cancel" />
 
-        <ImageButton
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight=".50"
-            android:background="@android:color/holo_blue_light"
-            android:src="@drawable/ic_cancel" />
+    <ImageButton
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".50"
+        android:background="@android:color/holo_blue_light"
+        android:src="@drawable/ic_save" />
 
-        <ImageButton
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".50"
-            android:background="@android:color/holo_blue_light"
-            android:src="@drawable/ic_save" />
     </LinearLayout>
 
 </RelativeLayout>
