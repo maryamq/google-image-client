@@ -1,4 +1,4 @@
-package com.maryamq.imageclient;
+package com.maryamq.imageclient.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

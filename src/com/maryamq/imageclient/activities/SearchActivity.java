@@ -26,13 +26,13 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.maryamq.imageclient.R;
-import com.maryamq.imageclient.SettingsDialog;
-import com.maryamq.imageclient.SettingsDialog.SettingsDialogListener;
-import com.maryamq.imageclient.Utils;
 import com.maryamq.imageclient.adapters.ImageResultsAdapter;
+import com.maryamq.imageclient.dialog.SettingsDialog;
+import com.maryamq.imageclient.dialog.SettingsDialog.SettingsDialogListener;
 import com.maryamq.imageclient.handlers.EndlessScrollListener;
 import com.maryamq.imageclient.model.ImageResult;
 import com.maryamq.imageclient.model.UrlMetaData;
+import com.maryamq.imageclient.utils.Utils;
 
 public class SearchActivity extends FragmentActivity implements
 		SettingsDialogListener {

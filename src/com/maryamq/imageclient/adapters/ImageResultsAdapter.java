@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maryamq.imageclient.R;
-import com.maryamq.imageclient.Utils;
 import com.maryamq.imageclient.model.ImageResult;
+import com.maryamq.imageclient.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 public class ImageResultsAdapter extends ArrayAdapter<ImageResult> {

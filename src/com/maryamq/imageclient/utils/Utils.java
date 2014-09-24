@@ -1,4 +1,4 @@
-package com.maryamq.imageclient;
+package com.maryamq.imageclient.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;

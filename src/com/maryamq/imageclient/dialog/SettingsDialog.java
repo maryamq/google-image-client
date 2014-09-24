@@ -1,4 +1,4 @@
-package com.maryamq.imageclient;
+package com.maryamq.imageclient.dialog;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.maryamq.imageclient.R;
+import com.maryamq.imageclient.R.array;
+import com.maryamq.imageclient.R.id;
+import com.maryamq.imageclient.R.layout;
 import com.maryamq.imageclient.model.UrlMetaData;
 
 public class SettingsDialog extends DialogFragment {

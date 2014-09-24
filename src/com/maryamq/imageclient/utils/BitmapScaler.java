@@ -1,4 +1,4 @@
-package com.maryamq.imageclient;
+package com.maryamq.imageclient.utils;
 
 import android.graphics.Bitmap;
 
